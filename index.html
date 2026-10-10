@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#23493B" />
+  <title>10/11 루프탑 바베큐 체크리스트</title>
+  <style>
+    :root {
+      --bg: #F8F6F0;
+      --card: #FFFFFF;
+      --ink: #1E2823;
+      --muted: #5A665F;
+      --line: #E4E2DA;
+      --accent: #2A5C48;
+      --accent-soft: #E7EFEA;
+      --warn-bg: #FFF6E8;
+      --warn-border: #E8C587;
+      --warn-ink: #6B4913;
+      --done-bg: #F2F3EE;
+      --done-ink: #8C968F;
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      padding: 0 0 88px;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    /* Header */
+    .header {
+      background: #23493B;
+      color: #FFFFFF;
+      padding: 18px 18px 14px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .header-sub {
+      margin-top: 3px;
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .btn-small {
+      background: rgba(255, 255, 255, 0.14);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-small.active {
+      background: #FFFFFF;
+      color: #23493B;
+    }
+
+    .progress-wrap {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #8CE0B8;
+      border-radius: 999px;
+      transition: width 0.25s ease;
+    }
+
+    .progress-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: #D7F5E6;
+      min-width: 72px;
+      text-align: right;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 14px 14px 24px;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* Section Card */
+    .section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.3px;
+    }
+
+    .section-badge {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .section-sub {
+      margin: 0 0 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Checklist Items */
+    .check-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 11px;
+      border: 1px solid var(--line);
+      background: #FCFBF8;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+    }
+
+    .check-item:active {
+      transform: scale(0.992);
+    }
+
+    .check-box {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 2px solid var(--accent);
+      background: #FFFFFF;
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+
+    .check-box svg {
+      width: 14px;
+      height: 14px;
+      stroke: #FFFFFF;
+      stroke-width: 3;
+      fill: none;
+      opacity: 0;
+    }
+
+    .check-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .check-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    .check-detail {
+      margin-top: 3px;
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .check-item.done {
+      background: var(--done-bg);
+      border-color: #E5E7E2;
+    }
+
+    .check-item.done .check-box {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .check-item.done .check-box svg {
+      opacity: 1;
+    }
+
+    .check-item.done .check-label {
+      color: var(--done-ink);
+      text-decoration: line-through;
+    }
+
+    .check-item.done .check-detail {
+      color: #9FA8A2;
+    }
+
+    body.hide-done .check-item.done {
+      display: none;
+    }
+
+    /* Callout / Note Box */
+    .note-box {
+      margin-top: 12px;
+      padding: 11px 13px;
+      background: var(--accent-soft);
+      border-radius: 10px;
+      font-size: 13px;
+      color: #204234;
+      line-height: 1.45;
+    }
+
+    .warn-box {
+      margin-top: 12px;
+      padding: 11px 13px;
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      border-radius: 10px;
+      font-size: 13px;
+      color: var(--warn-ink);
+      line-height: 1.45;
+    }
+
+    /* Flow / Recipe Cards */
+    .step-card {
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 12px 13px;
+      margin-bottom: 8px;
+      background: #FCFBF8;
+    }
+
+    .step-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .step-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .step-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .temp-pill {
+      font-size: 12px;
+      font-weight: 700;
+      color: #9E3B16;
+      background: #FDECE5;
+      padding: 2px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .step-desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .step-pair {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed var(--line);
+      font-size: 12.5px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Corn Formula */
+    .formula-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0;
+    }
+
+    .formula-chip {
+      background: var(--accent-soft);
+      color: #1D4334;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 6px 10px;
+      border-radius: 8px;
+    }
+
+    /* Tables */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin-top: 6px;
+    }
+
+    .info-table th,
+    .info-table td {
+      padding: 8px 6px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .info-table th {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 12.5px;
+    }
+
+    .info-table td.num,
+    .info-table th.num {
+      text-align: right;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .info-table tr.total-row td {
+      font-weight: 700;
+      color: var(--accent);
+      border-top: 2px solid var(--accent);
+      border-bottom: none;
+      padding-top: 10px;
+    }
+
+    .guide-img {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      margin-top: 10px;
+      display: block;
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #FFFFFF;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-around;
+      padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
+      z-index: 30;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-btn {
+      flex: 1;
+      border: none;
+      background: none;
+      padding: 7px 4px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .nav-btn .nav-icon {
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .nav-btn.active {
+      color: var(--accent);
+      background: var(--accent-soft);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-top">
+      <div>
+        <h1>10/11 루프탑 바베큐 (루카831)</h1>
+        <div class="header-sub">일요일 · 서울 강남구 강남대로 338 옥상 루프탑 · 성인 7 + 아이 1</div>
+      </div>
+      <div class="header-actions">
+        <button class="btn-small" id="toggleDoneBtn" type="button">완료 숨김</button>
+        <button class="btn-small" id="resetBtn" type="button">초기화</button>
+      </div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text" id="progressText">0 / 0 완료</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- TAB 1: 집 & 출발 전 체크리스트 -->
+    <section class="tab-panel active" id="tab-prep">
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">1. 집에서 미리 준비</h2>
+          <span class="section-badge" data-group-count="home">0/5</span>
+        </div>
+        <p class="section-sub">현장에 수도가 없으므로 세척·손질까지 끝내기</p>
+        <div class="check-list" data-group="home">
+          <div class="check-item" data-id="h1">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">새벽배송 수령 → 고기만 냉장실에 넣기</div>
+              <div class="check-detail">은박봉투 속 드라이아이스·아이스팩은 빼고 고기만 냉장실 보관. 일회용 은박봉투는 버리지 말고 킵, 아이스팩은 냉동실에 넣어뒀다가 출발할 때 재활용.</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="h2">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">냉동 양고기 해동 상태 & 갈비대 분리 확인</div>
+              <div class="check-detail">숄더랙 800g, 프렌치랙 300g×2팩도 냉장실에 넣어 해동 시작. 갈비대가 1대씩 나뉘어 있는지 확인.</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="h3">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">출발 1시간 전 양고기 만져보기</div>
+              <div class="check-detail">살짝 얼어 있거나 말랑하면 그대로 출발(이동 중 자연 해동). 돌처럼 꽁꽁 얼어 있으면 포장 뜯지 않은 채 찬물에 20~30분 담가 해동.</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="h4">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">옥수수·버섯·파프리카·라임 씻고 썰기</div>
+              <div class="check-detail">초당옥수수 3개는 3등분(총 9조각), 새송이는 길게, 파프리카는 씨 빼고 큼직하게. 씻은 뒤 물기 빼서 용기에 담기. 라임 1개도 짜기 좋게 자르기.</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="h5">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">집 냉동 버터 약 20g 덜어 담기</div>
+              <div class="check-detail">작은 밀폐용기에 담아 준비. 이동 중 살짝 말랑해져도 뜨거운 옥수수에 펴 바르기 더 편함.</div>
+            </div>
+          </div>
+        </div>
+        <div class="note-box">
+          💡 키친타월은 일반 배송이라 출발 전까지 안 오면 집에 있는 키친타월을 챙긴다.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">2. 가방에 넣을 짐 체크</h2>
+          <span class="section-badge" data-group-count="pack">0/7</span>
+        </div>
+        <p class="section-sub">출발 직전 냉장고에서 꺼내 쿠팡 은박봉투에 담기</p>
+        <div class="check-list" data-group="pack">
+          <div class="check-item" data-id="p1">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">양고기 1.4kg (은박봉투 + 아이스팩)</div>
+              <div class="check-detail">고메프리미엄 숄더랙 800g(1팩) + 프렌치랙 300g(2팩).</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="p2">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">소고기 1.4kg (은박봉투에 합포장)</div>
+              <div class="check-detail">프라임 등심 500g(2팩) + 꽃갈비살·갈비살 모둠 400g(1팩).</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="p3">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">손질한 채소·옥수수 9조각·라임 1개</div>
+              <div class="check-detail">새송이버섯 400g, 파프리카 2개, 초당옥수수 9조각, 자른 라임 1개.</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="p4">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">고기용 소금·소스 5종</div>
+              <div class="check-detail">허브솔트(50g), 트러플솔트(50g), 양껏머글램 민트젤리(170g), 움트리 생와사비(120g), 폰타나 바베큐 소스(285g).</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="p5">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">마약 옥수수 재료 4종</div>
+              <div class="check-detail">소분한 버터(약 20g), 마요네즈(50g), 파마산 치즈(85g), 파프리카 시즈닝(60g).</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="p6">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">키친타월</div>
+              <div class="check-detail">불판 기름칠(붓 대용) 및 고기 물기 제거용.</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="p7">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">맥주 8캔</div>
+              <div class="check-detail">미리 시원하게 냉장해 둔 맥주 챙기기.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">3. 현장 도착 전·후 확인</h2>
+          <span class="section-badge" data-group-count="onsite">0/4</span>
+        </div>
+        <p class="section-sub">이동 중 픽업 및 주인·지인 확인 사항</p>
+        <div class="check-list" data-group="onsite">
+          <div class="check-item" data-id="o1">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">루카831 건물에서 샐러드 테이크아웃</div>
+              <div class="check-detail">루프탑(29층 옥상) 올라가기 전에 픽업.</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="o2">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">편의점에서 마실 물 구매</div>
+              <div class="check-detail">얼음은 당일 필요하면 같이 구매.</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="o3">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">지인 집 식용유(카놀라유·해바라기유) 확인</div>
+              <div class="check-detail">예열 전 불판 코팅용으로 소량 사용. 후추도 필요하면 있는지 확인.</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="o4">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">일회용품(접시·수저·와인잔/물컵)·나무젓가락·세척 장소 확인</div>
+              <div class="check-detail">주인이 준비한 집게·가위·접시·수저와 함께 <strong>와인잔/물컵(및 와인 오프너)</strong>이 있는지 확인(생고기용/구운 고기용 접시·집게 분리). 옥수수용 나무젓가락 유무와 손·불판 씻을 곳 확인.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: 현장 조리 & 레시피 -->
+    <section class="tab-panel" id="tab-cook">
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">도착 후 세팅 & 예열</h2>
+          <span class="section-badge" data-group-count="setup">0/4</span>
+        </div>
+        <p class="section-sub">그늘 보관 → 자리 분리 → 불판 기름칠 → 예열</p>
+        <div class="check-list" data-group="setup">
+          <div class="check-item" data-id="s1">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">고기는 테이블 아래 그늘에 은박봉투째 두기</div>
+              <div class="check-detail">직사광선과 그릴 열기를 피하고, 지금 바로 구울 팩만 그때그때 뜯기.</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="s2">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">생고기 자리 vs 다 구운 고기 자리 나누기</div>
+              <div class="check-detail">생고기 접시·집게와 다 구운 고기용 새 접시·집게·가위를 섞어 쓰지 않기.</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="s3">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">식탁에 소스 4종 조금씩 덜어 세팅</div>
+              <div class="check-detail">민트젤리, 생와사비, 트러플솔트, 바베큐 소스(아이 주기 전 맵기 확인).</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="s4">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">식은 불판에 기름칠 → 200°C에서 3~5분 예열</div>
+              <div class="check-detail">키친타월로 볼록한 그릴 줄무늬까지 식용유를 얇게 펴 바른 뒤, 다이얼을 길게 눌러 켜고 200°C 예열.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">고기 & 음식 굽는 순서</h2>
+          <span class="section-badge" data-group-count="cook">0/4</span>
+        </div>
+        <p class="section-sub">굽기 직전 키친타월로 핏물 닦고 허브솔트는 가볍게만</p>
+
+        <div class="check-list" data-group="cook">
+          <div class="check-item" data-id="c1">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="step-head">
+                <span class="check-label">1. 양고기 + 소고기 + 가니시 (첫 판)</span>
+                <span class="temp-pill">약 220~230°C</span>
+              </div>
+              <div class="check-detail">양고기 안 먹는 사람도 바로 먹게 첫 판은 양·소고기를 함께 나누어 굽는다. 남는 자리에 버섯·파프리카를 구워 먼저 꺼내고, 다 구운 양·소는 접시에 구분해 담는다.</div>
+              <div class="step-pair">양고기 → 민트젤리 / 소고기 → 와사비·트러플솔트·바베큐 소스</div>
+            </div>
+          </div>
+
+          <div class="check-item" data-id="c2">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="step-head">
+                <span class="check-label">2. 마약 옥수수 9조각</span>
+                <span class="temp-pill">약 190~200°C</span>
+              </div>
+              <div class="check-detail">첫 고기 먹는 동안 온도를 살짝 낮춰 옥수수를 올린다. 뚜껑을 덮어 10~15분 익히되, 중간중간 열어 골고루 굴려가며 노릇한 구운 색을 낸다. (아래 마무리 순서 참고)</div>
+            </div>
+          </div>
+
+          <div class="check-item" data-id="c3">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="step-head">
+                <span class="check-label">3. 남은 양·소고기 & 가니시 추가</span>
+                <span class="temp-pill">약 220~230°C</span>
+              </div>
+              <div class="check-detail">먹는 속도에 맞춰 나누어 굽는다. 두꺼운 등심은 다 구운 뒤 접시에서 2~3분 레스팅한 다음 먹기 좋게 썬다.</div>
+            </div>
+          </div>
+
+          <div class="check-item" data-id="c4">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="step-head">
+                <span class="check-label">4. 돼지 목살 약 1kg 마무리</span>
+                <span class="temp-pill">약 200~220°C</span>
+              </div>
+              <div class="check-detail">지인이 가져온 목살로 마무리. 두꺼우면 겉면을 먼저 구운 뒤 뚜껑을 덮어 속까지 익힌다. 부족하면 편의점 햇반·컵라면 추가.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">🌽 마약 옥수수 마무리 공식 (9조각)</h2>
+        <p class="section-sub">다 구운 옥수수를 접시에 옮긴 뒤 뜨거운 상태에서 바로 진행</p>
+        <div class="formula-flow">
+          <span class="formula-chip">① 버터 20g</span>
+          <span class="formula-chip">② 마요네즈 2~3큰술</span>
+          <span class="formula-chip">③ 치즈가루 2~3큰술</span>
+          <span class="formula-chip">④ (아이 몫 덜기)</span>
+          <span class="formula-chip">⑤ 파프리카 시즈닝</span>
+          <span class="formula-chip">⑥ 라임즙</span>
+        </div>
+        <div class="step-card">
+          <p class="step-desc">
+            • <strong>숟가락 뒷면 활용</strong>: 옥수수가 뜨거울 때 버터를 올리고 숟가락 등으로 문질러 녹여 바른 뒤 마요네즈를 펴 바른다.<br/>
+            • <strong>다시 굽지 않기</strong>: 마요네즈·치즈를 올린 뒤에는 그릴에 다시 올리지 않는다.<br/>
+            • <strong>나무젓가락 손잡이</strong>: 조금 식힌 뒤 꽂는다. 심이 딱딱해 안 들어가면 억지로 꽂지 말고 집게로 집어 먹는다.
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">종료 & 세척 정리</h2>
+          <span class="section-badge" data-group-count="clean">0/2</span>
+        </div>
+        <div class="check-list" data-group="clean">
+          <div class="check-item" data-id="cl1">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">다이얼 길게 눌러 끄고 플러그 뽑기</div>
+              <div class="check-detail">불판이 뜨거울 때 찬물을 붓지 말고 충분히 식힌다.</div>
+            </div>
+          </div>
+          <div class="check-item" data-id="cl2">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="check-label">식힌 분리형 불판·기름받이만 스펀지 세척</div>
+              <div class="check-detail">철수세미 사용 금지. 전기 본체에는 절대 물을 붓지 않는다.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: 그릴 가이드 -->
+    <section class="tab-panel" id="tab-grill">
+      <div class="section">
+        <h2 class="section-title">CADAC E-Braai 40 FS 조작법</h2>
+        <p class="section-sub">출력 2,300W · 원형 불판 지름 38cm · 70~270°C</p>
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th>다이얼 조작</th>
+              <th>동작</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>길게 누르기</strong></td>
+              <td>전원 켜기 / 끄기</td>
+            </tr>
+            <tr>
+              <td><strong>시계 방향 돌리기</strong></td>
+              <td>설정 온도 올리기 (깜박인 뒤 반영)</td>
+            </tr>
+            <tr>
+              <td><strong>반시계 방향 돌리기</strong></td>
+              <td>설정 온도 내리기</td>
+            </tr>
+            <tr>
+              <td><strong>빠르게 두 번 누르기</strong></td>
+              <td>°C ↔ °F 단위 전환</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note-box">
+          • <strong>예열</strong>: 식은 불판에 식용유 얇게 바르기 → 전원 켜기 → <strong>200°C에서 3~5분 예열</strong>.<br/>
+          • 고기를 올리면 실제 불판 온도는 잠시 내려가도 표시창 숫자는 설정값을 그대로 유지할 수 있습니다.
+        </div>
+        <img class="guide-img" src="assets/e-braai-40-controls.png" alt="그릴 조작부 안내" />
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">주의사항 & 오류 코드</h2>
+        <div class="warn-box">
+          🔥 <strong>기름에 불이 붙었을 때</strong><br/>
+          절대 물을 붓지 마세요! <strong>뚜껑을 덮고 전원을 끈 뒤 안전하게 플러그를 뽑고</strong> 불이 꺼질 때까지 뚜껑을 닫아 둡니다.
+        </div>
+        <table class="info-table" style="margin-top: 12px;">
+          <thead>
+            <tr>
+              <th>코드</th>
+              <th>원인 및 대처</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>E1 / E2</strong></td>
+              <td>조리면 온도 센서 이상 → 플러그 뺐다가 재시작</td>
+            </tr>
+            <tr>
+              <td><strong>E3 / E4</strong></td>
+              <td>메인보드 온도 센서 과열/이상 → 플러그 빼고 식힌 뒤 재시작</td>
+            </tr>
+          </tbody>
+        </table>
+        <img class="guide-img" src="assets/e-braai-40-official-catalogue.png" alt="그릴 구조도" />
+      </div>
+    </section>
+
+    <!-- TAB 4: 주문 & 정산 메모 -->
+    <section class="tab-panel" id="tab-order">
+      <div class="section">
+        <h2 class="section-title">고기 구성 요약 (총 약 3.8kg)</h2>
+        <p class="section-sub">성인 7명 + 초1 아이 1명 (1인당 생고기 약 475g, 양 뼈 포함)</p>
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th>품목</th>
+              <th>구성</th>
+              <th class="num">중량</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>미국산 프라임 등심 (냉장)</td>
+              <td>500g × 2팩</td>
+              <td class="num">1,000g</td>
+            </tr>
+            <tr>
+              <td>호주산 꽃갈비살·갈비살 모둠 (냉장)</td>
+              <td>400g × 1팩</td>
+              <td class="num">400g</td>
+            </tr>
+            <tr>
+              <td>고메프리미엄 램 숄더랙 (냉동)</td>
+              <td>800g × 1팩</td>
+              <td class="num">800g</td>
+            </tr>
+            <tr>
+              <td>고메프리미엄 램 프렌치랙 (냉동)</td>
+              <td>300g × 2팩</td>
+              <td class="num">600g</td>
+            </tr>
+            <tr>
+              <td>돼지 목살 (지인 지참)</td>
+              <td>두툼한 구이용</td>
+              <td class="num">약 1,000g</td>
+            </tr>
+            <tr class="total-row">
+              <td colspan="2">합계 (소 1.4kg + 양 1.4kg + 돼지 1kg)</td>
+              <td class="num">약 3.8kg</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">쿠팡 결제 내역 & 정산 메모 (17종)</h2>
+        <p class="section-sub">10/10 주문 완료</p>
+        <div class="note-box" style="margin-top: 0; margin-bottom: 12px;">
+          💰 <strong>총 결제 금액: 208,560원</strong> (성인 7명 균등 시 <strong>1인 약 29,800원</strong> / 29,794원)<br/>
+          <span style="font-size: 12px; color: #4A665A;">* 건물 샐러드, 편의점 물, 지인 목살 비용, 각자 주류는 별도</span>
+        </div>
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th>품목</th>
+              <th>구성</th>
+              <th class="num">결제 금액</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>프라임 등심 스테이크</td><td>냉장 500g×2팩</td><td class="num">57,870원</td></tr>
+            <tr><td>호주산 램 프렌치랙</td><td>냉동 300g×2팩</td><td class="num">41,480원</td></tr>
+            <tr><td>고메프리미엄 램 숄더랙</td><td>냉동 800g 1팩</td><td class="num">34,880원</td></tr>
+            <tr><td>꽃갈비살·갈비살 모둠</td><td>냉장 400g 1팩</td><td class="num">26,900원</td></tr>
+            <tr><td>손질 초당옥수수</td><td>3개입 1팩</td><td class="num">8,900원</td></tr>
+            <tr><td>양껏머글램 민트젤리</td><td>170g 1개</td><td class="num">8,000원</td></tr>
+            <tr><td>움트리 육류n 생와사비랑</td><td>120g 1개</td><td class="num">4,790원</td></tr>
+            <tr><td>파프리카 시즈닝</td><td>60g 1개</td><td class="num">3,970원</td></tr>
+            <tr><td>파마산 치즈 블렌드</td><td>85g 1개</td><td class="num">3,380원</td></tr>
+            <tr><td>빨강·노랑 파프리카</td><td>2개입 1팩</td><td class="num">2,990원</td></tr>
+            <tr><td>손질 새송이버섯</td><td>400g 1팩</td><td class="num">2,680원</td></tr>
+            <tr><td>폰타나 바베큐 소스</td><td>285g 1개</td><td class="num">2,590원</td></tr>
+            <tr><td>백설 찍어먹는 트러플솔트</td><td>50g 1개</td><td class="num">2,480원</td></tr>
+            <tr><td>백설 허브맛 솔트 오리지널</td><td>50g 1개</td><td class="num">2,470원</td></tr>
+            <tr><td>라임</td><td>1개 (약 90g)</td><td class="num">2,100원</td></tr>
+            <tr><td>키친타월 (일반배송)</td><td>100매 1개</td><td class="num">1,970원</td></tr>
+            <tr><td>마요네즈</td><td>50g 1개</td><td class="num">1,110원</td></tr>
+            <tr class="total-row">
+              <td colspan="2">17종 총 결제 금액</td>
+              <td class="num">208,560원</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-tab="tab-prep" type="button">
+      <span class="nav-icon">🎒</span>
+      <span>집·출발 체크</span>
+    </button>
+    <button class="nav-btn" data-tab="tab-cook" type="button">
+      <span class="nav-icon">🔥</span>
+      <span>현장·조리</span>
+    </button>
+    <button class="nav-btn" data-tab="tab-grill" type="button">
+      <span class="nav-icon">🎛️</span>
+      <span>그릴 가이드</span>
+    </button>
+    <button class="nav-btn" data-tab="tab-order" type="button">
+      <span class="nav-icon">🧾</span>
+      <span>주문·정산</span>
+    </button>
+  </nav>
+
+  <script>
+    const STORAGE_KEY = 'sejun_bbq_checks_20261011';
+    const HIDE_DONE_KEY = 'sejun_bbq_hide_done';
+    let checkedMap = {};
+
+    try {
+      checkedMap = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    } catch (e) {
+      checkedMap = {};
+    }
+
+    const items = Array.from(document.querySelectorAll('.check-item'));
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const toggleDoneBtn = document.getElementById('toggleDoneBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function renderChecks() {
+      let total = items.length;
+      let done = 0;
+
+      items.forEach(item => {
+        const id = item.dataset.id;
+        const isDone = !!checkedMap[id];
+        item.classList.toggle('done', isDone);
+        if (isDone) done++;
+      });
+
+      const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+      progressFill.style.width = pct + '%';
+      progressText.textContent = `${done} / ${total} 완료`;
+
+      document.querySelectorAll('[data-group]').forEach(list => {
+        const groupName = list.dataset.group;
+        const groupItems = list.querySelectorAll('.check-item');
+        const groupDone = list.querySelectorAll('.check-item.done');
+        const badge = document.querySelector(`[data-group-count="${groupName}"]`);
+        if (badge) {
+          badge.textContent = `${groupDone.length}/${groupItems.length}`;
+        }
+      });
+    }
+
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        const id = item.dataset.id;
+        checkedMap[id] = !checkedMap[id];
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(checkedMap));
+        } catch (e) {}
+        renderChecks();
+      });
+    });
+
+    // Hide completed toggle
+    let hideDone = localStorage.getItem(HIDE_DONE_KEY) === '1';
+    function applyHideDone() {
+      document.body.classList.toggle('hide-done', hideDone);
+      toggleDoneBtn.classList.toggle('active', hideDone);
+    }
+    toggleDoneBtn.addEventListener('click', () => {
+      hideDone = !hideDone;
+      try {
+        localStorage.setItem(HIDE_DONE_KEY, hideDone ? '1' : '0');
+      } catch (e) {}
+      applyHideDone();
+    });
+
+    // Reset button
+    resetBtn.addEventListener('click', () => {
+      if (confirm('체크한 항목을 모두 초기화할까요?')) {
+        checkedMap = {};
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+        } catch (e) {}
+        renderChecks();
+      }
+    });
+
+    // Tab navigation
+    const navBtns = document.querySelectorAll('.nav-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    navBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.tab;
+        navBtns.forEach(b => b.classList.toggle('active', b === btn));
+        tabPanels.forEach(p => p.classList.toggle('active', p.id === target));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    applyHideDone();
+    renderChecks();
+  </script>
+</body>
+</html>
