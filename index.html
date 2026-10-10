@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="루프탑 바베큐" />
   <meta name="theme-color" content="#23493B" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" href="assets/apple-touch-icon.png" />
   <title>10/11 루프탑 바베큐 체크리스트</title>
   <style>
     :root {
@@ -1025,6 +1028,24 @@
 
     applyHideDone();
     renderChecks();
+
+    // Enhance favicon / touch icon with native emoji on canvas when supported
+    try {
+      const cv = document.createElement('canvas');
+      cv.width = 180;
+      cv.height = 180;
+      const ctx = cv.getContext('2d');
+      ctx.fillStyle = '#23493B';
+      ctx.fillRect(0, 0, 180, 180);
+      ctx.font = '112px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('🍖', 90, 96);
+      const dataUrl = cv.toDataURL('image/png');
+      document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]').forEach(el => {
+        el.href = dataUrl;
+      });
+    } catch (e) {}
   </script>
 </body>
 </html>
