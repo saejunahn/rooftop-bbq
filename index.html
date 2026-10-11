@@ -427,9 +427,9 @@
       flex: 1;
       border: none;
       background: none;
-      padding: 7px 4px;
+      padding: 7px 2px;
       border-radius: 10px;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
       color: var(--muted);
       cursor: pointer;
@@ -437,6 +437,7 @@
       flex-direction: column;
       align-items: center;
       gap: 3px;
+      letter-spacing: -0.3px;
     }
 
     .nav-btn .nav-icon {
@@ -457,7 +458,7 @@
     <div class="header-top">
       <div>
         <h1>10/11 루프탑 바베큐 (루카831)</h1>
-        <div class="header-sub">일요일 · 서울 강남구 강남대로 338 옥상 루프탑 · 성인 7 + 아이 1</div>
+        <div class="header-sub">일요일 18:00~19:20 · 강남대로 338 옥상 루프탑 · 성인 7 + 아이 1</div>
       </div>
       <div class="header-actions">
         <button class="btn-small" id="toggleDoneBtn" type="button">완료 숨김</button>
@@ -663,21 +664,21 @@
 
       <div class="section">
         <div class="section-header">
-          <h2 class="section-title">고기 & 음식 굽는 순서</h2>
-          <span class="section-badge" data-group-count="cook">0/4</span>
+          <h2 class="section-title">고기 & 음식 굽는 순서 (18:00~19:20)</h2>
+          <span class="section-badge" data-group-count="cook">0/3</span>
         </div>
-        <p class="section-sub">굽기 직전 키친타월로 핏물 닦고 허브솔트는 가볍게만</p>
+        <p class="section-sub">루프탑 그릴은 빨리 익는 소고기·채소 위주, 양갈비는 시간에 맞춰 그릴 또는 실내 오븐 활용</p>
 
         <div class="check-list" data-group="cook">
           <div class="check-item" data-id="c1">
             <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
             <div class="check-content">
               <div class="step-head">
-                <span class="check-label">1. 양고기 + 소고기 + 가니시 (첫 판)</span>
-                <span class="temp-pill">약 220~230°C</span>
+                <span class="check-label">1. 소고기(갈비살 → 등심) + 가니시</span>
+                <span class="temp-pill">약 220~240°C</span>
               </div>
-              <div class="check-detail">양고기 안 먹는 사람도 바로 먹게 첫 판은 양·소고기를 함께 나누어 굽는다. 남는 자리에 버섯·파프리카를 구워 먼저 꺼내고, 다 구운 양·소는 접시에 구분해 담는다.</div>
-              <div class="step-pair">양고기 → 민트젤리 / 소고기 → 와사비·트러플솔트·바베큐 소스</div>
+              <div class="check-detail">빨리 익는 꽃갈비살·갈비살 모둠(400g)부터 올려 바로 먹고, 이어서 등심 스테이크(500g×2팩)와 버섯·파프리카를 구워 낸다. 등심은 다 구운 뒤 2~3분 레스팅 후 썬다.</div>
+              <div class="step-pair">소고기 → 생와사비 · 트러플솔트 · 바베큐 소스</div>
             </div>
           </div>
 
@@ -688,7 +689,7 @@
                 <span class="check-label">2. 마약 옥수수 9조각</span>
                 <span class="temp-pill">약 190~200°C</span>
               </div>
-              <div class="check-detail">첫 고기 먹는 동안 온도를 살짝 낮춰 옥수수를 올린다. 뚜껑을 덮어 10~15분 익히되, 중간중간 열어 골고루 굴려가며 노릇한 구운 색을 낸다. (아래 마무리 순서 참고)</div>
+              <div class="check-detail">뚜껑을 덮어 10~15분 굴려가며 굽거나, 실내 전자레인지에서 4분 미리 익혀 와서 그릴에서는 2~3분 구운 색만 내면 불판 시간을 크게 아낄 수 있다.</div>
             </div>
           </div>
 
@@ -696,21 +697,11 @@
             <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
             <div class="check-content">
               <div class="step-head">
-                <span class="check-label">3. 남은 양·소고기 & 가니시 추가</span>
-                <span class="temp-pill">약 220~230°C</span>
+                <span class="check-label">3. 양갈비 (시간 되면 그릴 / 2차는 실내 오븐)</span>
+                <span class="temp-pill">220~230°C</span>
               </div>
-              <div class="check-detail">먹는 속도에 맞춰 나누어 굽는다. 두꺼운 등심은 다 구운 뒤 접시에서 2~3분 레스팅한 다음 먹기 좋게 썬다.</div>
-            </div>
-          </div>
-
-          <div class="check-item" data-id="c4">
-            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-            <div class="check-content">
-              <div class="step-head">
-                <span class="check-label">4. 돼지 목살 약 1kg 마무리</span>
-                <span class="temp-pill">약 200~220°C</span>
-              </div>
-              <div class="check-detail">지인이 가져온 목살로 마무리. 두꺼우면 겉면을 먼저 구운 뒤 뚜껑을 덮어 속까지 익힌다. 부족하면 편의점 햇반·컵라면 추가.</div>
+              <div class="check-detail">루프탑 시간이 남으면 프렌치랙부터 그릴에 굽고, 시간이 빠듯하면 19:20 이후 지인 집 오븐(하단 <strong>[양갈비 오븐]</strong> 탭 참고)에서 구워 2차 안주로 따뜻하게 먹는다.</div>
+              <div class="step-pair">양갈비 → 민트젤리 · 허브솔트 · 트러플솔트</div>
             </div>
           </div>
         </div>
@@ -745,8 +736,8 @@
           <div class="check-item" data-id="cl1">
             <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
             <div class="check-content">
-              <div class="check-label">다이얼 길게 눌러 끄고 플러그 뽑기</div>
-              <div class="check-detail">불판이 뜨거울 때 찬물을 붓지 말고 충분히 식힌다.</div>
+              <div class="check-label">19:05~19:10쯤 다이얼 길게 눌러 끄고 플러그 뽑기</div>
+              <div class="check-detail">19:20 퇴실 전 불판이 식을 수 있도록 미리 전원을 끈다. 뜨거울 때 찬물을 붓지 않는다.</div>
             </div>
           </div>
           <div class="check-item" data-id="cl2">
@@ -760,7 +751,125 @@
       </div>
     </section>
 
-    <!-- TAB 3: 그릴 가이드 -->
+    <!-- TAB 3: 양갈비 가정용 오븐 조리법 -->
+    <section class="tab-panel" id="tab-oven">
+      <div class="section">
+        <h2 class="section-title">🍖 양갈비 가정용 오븐 시간·온도 요약</h2>
+        <p class="section-sub">갈비대 1대씩 분리된 스테이크 컷(두께 1.5~2.5cm) 기준</p>
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th>부위 (수량)</th>
+              <th>조리 방식</th>
+              <th class="num">온도 · 시간</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>프렌치랙</strong><br/><span style="font-size:12px;color:var(--muted);">300g×2팩 (600g)</span></td>
+              <td><strong>오븐 단독</strong><br/><span style="font-size:12px;color:var(--muted);">중간 1회 뒤집기</span></td>
+              <td class="num"><strong>200°C · 12~15분</strong><br/><span style="font-size:12px;color:var(--muted);">앞 8분 + 뒤 5~6분</span></td>
+            </tr>
+            <tr>
+              <td><strong>숄더랙</strong><br/><span style="font-size:12px;color:var(--muted);">800g×1팩 (800g)</span></td>
+              <td><strong>오븐 단독</strong><br/><span style="font-size:12px;color:var(--muted);">중간 1회 뒤집기</span></td>
+              <td class="num"><strong>205~210°C · 15~18분</strong><br/><span style="font-size:12px;color:var(--muted);">앞 10분 + 뒤 6~8분</span></td>
+            </tr>
+            <tr>
+              <td><strong>팬/그릴 초벌 후</strong><br/><span style="font-size:12px;color:var(--muted);">앞뒤 1분씩 시어링</span></td>
+              <td><strong>초벌 + 오븐</strong><br/><span style="font-size:12px;color:var(--muted);">뒤집기 생략 가능</span></td>
+              <td class="num"><strong>200°C · 7~10분</strong><br/><span style="font-size:12px;color:var(--muted);">프렌치 7~8분 / 숄더 9~10분</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note-box">
+          💡 <strong>왜 숄더랙을 조금 더 굽나요?</strong><br/>
+          • <strong>프렌치랙</strong>은 지방이 적고 살코기가 연해서 <strong>미디엄(중심 60~63°C, 살짝 핑크빛)</strong>일 때 가장 부드럽습니다.<br/>
+          • <strong>숄더랙</strong>은 어깨갈비 쪽이라 지방과 근막이 있어 <strong>미디엄~미디엄웰(15~18분)</strong>로 기름기를 충분히 녹여 구워야 잡내 없이 고소합니다.<br/>
+          • 혹시 프렌치랙이 1대씩 안 잘리고 <strong>3~4대 통째로 붙어 있다면 200°C에서 20~25분</strong> 구운 뒤 5분 레스팅해서 썹니다.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">단계별 오븐 조리 체크리스트</h2>
+          <span class="section-badge" data-group-count="oven">0/5</span>
+        </div>
+        <p class="section-sub">오븐 예열부터 레스팅까지 순서대로 터치하며 진행</p>
+        <div class="check-list" data-group="oven">
+          <div class="check-item" data-id="ov1">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="step-head">
+                <span class="check-label">1. 오븐 200~210°C 예열 먼저 켜기</span>
+                <span class="temp-pill">예열 약 10분</span>
+              </div>
+              <div class="check-detail">가정용 오븐은 온도가 올라가는 데 8~10분 걸리므로 고기 손질 전에 <strong>예열부터 걸어둔다.</strong> (광파오븐·소형 에어프라이어 오븐은 열선이 가까우니 195~200°C로 설정)</div>
+            </div>
+          </div>
+
+          <div class="check-item" data-id="ov2">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="step-head">
+                <span class="check-label">2. 키친타월로 핏물 완전히 닦기 (잡내 제거 핵심)</span>
+                <span class="temp-pill">필수</span>
+              </div>
+              <div class="check-detail">양고기 특유의 냄새는 해동할 때 나온 핏물에서 난다. 키친타월로 앞뒤와 뼈 주변 물기를 꾹꾹 눌러 깨끗이 닦아낸다.</div>
+            </div>
+          </div>
+
+          <div class="check-item" data-id="ov3">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="step-head">
+                <span class="check-label">3. 식용유 살짝 코팅 + 허브솔트 밑간</span>
+                <span class="temp-pill">겉바속촉 팁</span>
+              </div>
+              <div class="check-detail">고기 표면에 식용유(또는 올리브유)를 살짝 발라 코팅한 뒤 <strong>허브솔트</strong>를 앞뒤로 고루 뿌린다. 기름 코팅을 해두면 오븐 안에서도 겉면이 마르지 않고 노릇하게 구워진다.</div>
+            </div>
+          </div>
+
+          <div class="check-item" data-id="ov4">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="step-head">
+                <span class="check-label">4. 트레이(종이호일/석쇠)에 올려 굽고 중간에 1번 뒤집기</span>
+                <span class="temp-pill">12~18분</span>
+              </div>
+              <div class="check-detail">오븐 팬에 종이호일(또는 알루미늄 호일)을 깔거나 그릴망 위에 고기가 겹치지 않게 올린다.<br/>
+              • <strong>프렌치랙</strong>: 8분 굽기 → 뒤집어서 5~6분<br/>
+              • <strong>숄더랙</strong>: 10분 굽기 → 뒤집어서 6~8분<br/>
+              *(남은 새송이버섯·파프리카를 옆에 같이 넣으면 양고기 기름에 구워져 아주 맛있음)*</div>
+            </div>
+          </div>
+
+          <div class="check-item" data-id="ov5">
+            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="check-content">
+              <div class="step-head">
+                <span class="check-label">5. 꺼내서 3분 레스팅 후 민트젤리·트러플솔트 곁들이기</span>
+                <span class="temp-pill">레스팅 3분</span>
+              </div>
+              <div class="check-detail">오븐에서 꺼내 따뜻한 접시에 옮긴 뒤 <strong>2~3분 그대로 두어 육즙을 안정</strong>시킨다. 뼈를 잡고 바로 먹거나 먹기 좋게 잘라 민트젤리·트러플솔트·생와사비와 함께 낸다.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">🔥 (선택) 더 맛있게 굽는 '팬 초벌 + 오븐' 방법</h2>
+        <div class="step-card">
+          <p class="step-desc">
+            시간 여유가 조금 있다면 오븐에 넣기 전에 <strong>달군 프라이팬에서 앞뒤 1분씩만 센 불로 진한 갈색(시어링)</strong>을 낸 뒤 예열된 <strong>200°C 오븐에 7~10분</strong>만 넣어 보세요.<br/>
+            • 불판에서 구운 것 같은 불향·크러스트와 오븐의 촉촉한 속익힘을 동시에 잡을 수 있습니다.<br/>
+            • 번거로우면 프라이팬 생략하고 <strong>식용유 살짝 발라 바로 오븐</strong>에 넣어도 충분히 맛있습니다!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: 그릴 가이드 -->
     <section class="tab-panel" id="tab-grill">
       <div class="section">
         <h2 class="section-title">CADAC E-Braai 40 FS 조작법</h2>
@@ -826,11 +935,11 @@
       </div>
     </section>
 
-    <!-- TAB 4: 주문 & 정산 메모 -->
+    <!-- TAB 5: 주문 & 정산 메모 -->
     <section class="tab-panel" id="tab-order">
       <div class="section">
-        <h2 class="section-title">고기 구성 요약 (총 약 3.8kg)</h2>
-        <p class="section-sub">성인 7명 + 초1 아이 1명 (1인당 생고기 약 475g, 양 뼈 포함)</p>
+        <h2 class="section-title">고기 구성 요약 (총 2.8kg)</h2>
+        <p class="section-sub">성인 7명 + 초1 아이 1명 (소고기 1.4kg + 양고기 1.4kg, 양 뼈 포함)</p>
         <table class="info-table">
           <thead>
             <tr>
@@ -860,14 +969,9 @@
               <td>300g × 2팩</td>
               <td class="num">600g</td>
             </tr>
-            <tr>
-              <td>돼지 목살 (지인 지참)</td>
-              <td>두툼한 구이용</td>
-              <td class="num">약 1,000g</td>
-            </tr>
             <tr class="total-row">
-              <td colspan="2">합계 (소 1.4kg + 양 1.4kg + 돼지 1kg)</td>
-              <td class="num">약 3.8kg</td>
+              <td colspan="2">합계 (소 1.4kg + 양 1.4kg)</td>
+              <td class="num">2.8kg</td>
             </tr>
           </tbody>
         </table>
@@ -878,7 +982,7 @@
         <p class="section-sub">10/10 주문 완료</p>
         <div class="note-box" style="margin-top: 0; margin-bottom: 12px;">
           💰 <strong>총 결제 금액: 208,560원</strong> (성인 7명 균등 시 <strong>1인 약 29,800원</strong> / 29,794원)<br/>
-          <span style="font-size: 12px; color: #7A3E46;">* 건물 샐러드, 편의점 물, 지인 목살 비용, 각자 주류는 별도</span>
+          <span style="font-size: 12px; color: #7A3E46;">* 건물 샐러드, 편의점 물, 각자 주류는 별도</span>
         </div>
         <table class="info-table">
           <thead>
@@ -919,11 +1023,15 @@
   <nav class="bottom-nav">
     <button class="nav-btn active" data-tab="tab-prep" type="button">
       <span class="nav-icon">🎒</span>
-      <span>집·출발 체크</span>
+      <span>집·출발</span>
     </button>
     <button class="nav-btn" data-tab="tab-cook" type="button">
       <span class="nav-icon">🔥</span>
       <span>현장·조리</span>
+    </button>
+    <button class="nav-btn" data-tab="tab-oven" type="button">
+      <span class="nav-icon">🍖</span>
+      <span>양갈비 오븐</span>
     </button>
     <button class="nav-btn" data-tab="tab-grill" type="button">
       <span class="nav-icon">🎛️</span>
